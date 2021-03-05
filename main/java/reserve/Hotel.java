@@ -9,6 +9,14 @@ public class Hotel {
         this.priceOfHotel = priceOfHotel;
     }
 
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public int getPriceOfHotel() {
+        return priceOfHotel;
+    }
+
     public String toString(){
         return " Hotel Details [HotelName: " +hotelName+ " Price: "+priceOfHotel+ ']';
     }
