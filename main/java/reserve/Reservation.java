@@ -1,19 +1,17 @@
 package reserve;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Optional;
+import java.util.*;
 
 public class Reservation {
     public ArrayList<Hotel> list;
+    Scanner scanner = new Scanner(System.in);
 
     public Reservation(){
         list = new ArrayList<>();
     }
 
-    public void addDetails(String hotelName, int price) {
-        Hotel hotel = new Hotel(hotelName, price);
+    public void addDetails(String hotelName,int weekday, int weekend,int price) {
+        Hotel hotel = new Hotel(hotelName,weekend,weekend,price);
         list.add(hotel);
     }
 
