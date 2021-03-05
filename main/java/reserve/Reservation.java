@@ -4,14 +4,13 @@ import java.util.*;
 
 public class Reservation {
     public ArrayList<Hotel> list;
-    Scanner scanner = new Scanner(System.in);
 
     public Reservation(){
         list = new ArrayList<>();
     }
 
-    public void addDetails(String hotelName,int weekday, int weekend,int price) {
-        Hotel hotel = new Hotel(hotelName,weekend,weekend,price);
+    public void addDetails(String hotelName,int weekday, int weekend,int rating,int price) {
+        Hotel hotel =new Hotel(hotelName,weekday,weekend,rating,price);
         list.add(hotel);
     }
 
@@ -20,6 +19,9 @@ public class Reservation {
         while (iter.hasNext()) {
             System.out.println(iter.next());
         }
+    }
+
+    public void showCheapestHotel(){
         System.out.println("Cheapest Hotel: "+getCheapestHotel());
     }
 
