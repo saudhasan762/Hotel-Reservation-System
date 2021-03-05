@@ -22,4 +22,8 @@ public class Hotel {
     public String toString(){
         return " Hotel Details [HotelName: " +hotelName+ " Rating: "+rating+ " Price: "+priceOfHotel+ ']';
     }
+
+    public int getRating() {
+        return rating;
+    }
 }
