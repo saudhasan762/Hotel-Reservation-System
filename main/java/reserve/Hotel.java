@@ -6,7 +6,6 @@ public class Hotel {
     public int weekend;
     public int rating;
 
-
     public Hotel(String hotelName, int weekday, int weekend,int rating, int priceOfHotel){
         this.hotelName = hotelName;
         this.priceOfHotel = priceOfHotel;

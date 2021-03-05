@@ -70,5 +70,4 @@ public class Reservation {
         Optional<Hotel> highest = list.stream().max(Comparator.comparing(Hotel::getRating));
         return highest;
     }
-
 }
