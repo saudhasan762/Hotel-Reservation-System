@@ -5,9 +5,9 @@ import java.util.*;
 public class Reservation {
     public ArrayList<Hotel> list;
     Scanner scanner =new Scanner(System.in);
-    String hotel1 = "Lakewood";
-    String hotel2 = "Bridgewood";
-    String hotel3 = "RidgeWood";
+    String hotelName1 = "LakeWood";
+    String hotelName2 = "BridgeWood";
+    String hotelName3 = "RidgeWood";
     int ratingOfLake = 3, ratingOfBridge = 4, ratingOfRidge = 5;
 
     public Reservation(){
@@ -20,32 +20,32 @@ public class Reservation {
     }
 
     public void viewDetails() {
-        Iterator iter = list.iterator();
-        while (iter.hasNext()) {
-            System.out.println(iter.next());
+        Iterator itr = list.iterator();
+        while (itr.hasNext()) {
+            System.out.println(itr.next());
         }
     }
 
     public boolean getDetailsForNormal() {
-        int LakeWeekday = 110, LakeWeekend = 90;
-        int BridWeekday = 150, BridWeekend = 50;
-        int RidWeekday = 220, RidWeekend = 150;
+        int lakeWeekday = 110, lakeWeekend = 90;
+        int bridgeWeekday = 150, bridgeWeekend = 50;
+        int ridWeekday = 220, ridWeekend = 150;
         System.out.println("Enter the number of Days to reserve");
         int numOfDays = scanner.nextInt();
         System.out.println("Enter 1 for weekday");
         System.out.println("Enter 2 for weekend");
         int dayType = scanner.nextInt();
         if (dayType == 1) {
-            addDetails(hotel1, ratingOfLake, numOfDays * LakeWeekday);
-            addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekday);
-            addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekday);
+            addDetails(hotelName1, ratingOfLake, numOfDays * lakeWeekday);
+            addDetails(hotelName2, ratingOfBridge, numOfDays * bridgeWeekday);
+            addDetails(hotelName3, ratingOfRidge, numOfDays * ridWeekday);
             viewDetails();
             showCheapestHotel();
             showHighestRated();
         } else if (dayType == 2) {
-            addDetails(hotel1, ratingOfLake, numOfDays * LakeWeekend);
-            addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekend);
-            addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekend);
+            addDetails(hotelName1, ratingOfLake, numOfDays * lakeWeekend);
+            addDetails(hotelName2, ratingOfBridge, numOfDays * bridgeWeekend);
+            addDetails(hotelName3, ratingOfRidge, numOfDays * ridWeekend);
             viewDetails();
             showCheapestHotel();
             showHighestRated();
@@ -58,23 +58,23 @@ public class Reservation {
     public boolean getDetailsForReward(){
         System.out.println("Enter the number of Days to reserve");
         int numOfDays = scanner.nextInt();
-        int LakeWeekdayForR = 80, LakeWeekendforR = 80;
-        int BridWeekdayForR = 110, BridWeekendForR = 50;
-        int RidWeekdayForR = 100, RidWeekendForR = 40;
+        int lakeWeekdayForR = 80, lakeWeekendForR = 80;
+        int bridgeWeekdayForR = 110, bridgeWeekendForR = 50;
+        int ridWeekdayForR = 100, ridWeekendForR = 40;
         System.out.println("Enter 1 for weekday");
         System.out.println("Enter 2 for weekend");
         int dayType = scanner.nextInt();
         if (dayType == 1) {
-            addDetails(hotel1, ratingOfLake, numOfDays * LakeWeekdayForR);
-            addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekdayForR);
-            addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekdayForR);
+            addDetails(hotelName1, ratingOfLake, numOfDays * lakeWeekdayForR);
+            addDetails(hotelName2, ratingOfBridge, numOfDays * bridgeWeekdayForR);
+            addDetails(hotelName3, ratingOfRidge, numOfDays * ridWeekdayForR);
             viewDetails();
             showCheapestHotel();
             showHighestRated();
         } else if (dayType == 2) {
-            addDetails(hotel1, ratingOfLake, numOfDays * LakeWeekendforR);
-            addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekendForR);
-            addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekendForR);
+            addDetails(hotelName1, ratingOfLake, numOfDays * lakeWeekendForR);
+            addDetails(hotelName2, ratingOfBridge, numOfDays * bridgeWeekendForR);
+            addDetails(hotelName3, ratingOfRidge, numOfDays * ridWeekendForR);
             viewDetails();
             showCheapestHotel();
             showHighestRated();
@@ -104,7 +104,7 @@ public class Reservation {
     public Hotel findCheapest() {
         Hotel cheapest = list
                 .stream()
-                .max(Comparator.comparing(Hotel::getRating))
+                .min(Comparator.comparing(Hotel::getPriceOfHotel))
                 .orElseThrow(NoSuchFieldError::new);
         return cheapest;
     }
