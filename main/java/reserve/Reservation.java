@@ -26,7 +26,7 @@ public class Reservation {
         }
     }
 
-    public void getDetailsForNormal() {
+    public boolean getDetailsForNormal() {
         int LakeWeekday = 110, LakeWeekend = 90;
         int BridWeekday = 150, BridWeekend = 50;
         int RidWeekday = 220, RidWeekend = 150;
@@ -40,19 +40,22 @@ public class Reservation {
             addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekday);
             addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekday);
             viewDetails();
-            showBest();
+            showCheapestHotel();
+            showHighestRated();
         } else if (dayType == 2) {
             addDetails(hotel1, ratingOfLake, numOfDays * LakeWeekend);
             addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekend);
             addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekend);
             viewDetails();
-            showBest();
+            showCheapestHotel();
+            showHighestRated();
         } else {
             System.out.println("Invalid Choice");
+            return false;
         }
-
+        return true;
     }
-    public void getDetailsForReward(){
+    public boolean getDetailsForReward(){
         System.out.println("Enter the number of Days to reserve");
         int numOfDays = scanner.nextInt();
         int LakeWeekdayForR = 80, LakeWeekendforR = 80;
@@ -66,44 +69,43 @@ public class Reservation {
             addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekdayForR);
             addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekdayForR);
             viewDetails();
-            showBest();
+            showCheapestHotel();
+            showHighestRated();
         } else if (dayType == 2) {
             addDetails(hotel1, ratingOfLake, numOfDays * LakeWeekendforR);
             addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekendForR);
             addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekendForR);
             viewDetails();
-            showBest();
-        } else
+            showCheapestHotel();
+            showHighestRated();
+        } else {
             System.out.println("Invalid Choice");
-
+            return false;
+        }
+        return true;
     }
 
 
     public void showCheapestHotel(){
-        System.out.println("Cheapest Hotel: "+getCheapestHotel());
+        System.out.println("Cheapest Hotel: "+findCheapest());
     }
     public void showHighestRated(){
-        System.out.println("Highest Rated Hotel: "+getHighestRating());
-    }
-    public void showBest(){
-        System.out.println(findBest());
+        System.out.println("Highest Rated Hotel: "+findHighestRated());
     }
 
-    public Optional<Hotel> getCheapestHotel(){
-       Optional<Hotel> cheapest = list.stream().min(Comparator.comparing(Hotel::getPriceOfHotel));
-       return cheapest;
-    }
-
-    public Optional<Hotel> getHighestRating(){
-        Optional<Hotel> highest = list.stream().max(Comparator.comparing(Hotel::getRating));
-        return highest;
-    }
-    public Hotel findBest() {
-        Hotel best = list
+    public Hotel findHighestRated() {
+        Hotel rated = list
                 .stream()
                 .max(Comparator.comparing(Hotel::getRating))
                 .orElseThrow(NoSuchFieldError::new);
-        return best;
+        return rated;
+    }
 
+    public Hotel findCheapest() {
+        Hotel cheapest = list
+                .stream()
+                .max(Comparator.comparing(Hotel::getRating))
+                .orElseThrow(NoSuchFieldError::new);
+        return cheapest;
     }
 }

@@ -12,9 +12,9 @@ public class HotelReservation {
         System.out.println("Enter 1 for Normal Customer");
         System.out.println("Enter 2 for Reward Customer");
         int choice = scanner.nextInt();
-        if(choice == 1)
+        if (choice == 1)
             reservation.getDetailsForNormal();
-        else if(choice == 2)
+        else if (choice == 2)
             reservation.getDetailsForReward();
         else
             System.out.println("Invalid Choice");
