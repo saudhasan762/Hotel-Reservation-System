@@ -6,11 +6,13 @@ public class HotelReservation {
 
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("! Welcome to Hotel Management System !");
         Reservation reservation = new Reservation();
-        while (true) {
-            reservation.getDetails();
-        }
+        System.out.println("Enter 1 for Normal Customer");
+        System.out.println("Enter 2 for Reward Customer");
+        int choice = scanner.nextInt();
+        reservation.viewDetails();
     }
  }
 

@@ -4,13 +4,18 @@ import java.util.*;
 
 public class Reservation {
     public ArrayList<Hotel> list;
+    Scanner scanner =new Scanner(System.in);
+    String hotel1 = "Lakewood";
+    String hotel2 = "Bridgewood";
+    String hotel3 = "RidgeWood";
+    int ratingOfLake = 3, ratingOfBridge = 4, ratingOfRidge = 5;
 
     public Reservation(){
         list = new ArrayList<>();
     }
 
-    public void addDetails(String hotelName,int weekday, int weekend,int rating,int price) {
-        Hotel hotel =new Hotel(hotelName,weekday,weekend,rating,price);
+    public void addDetails(String hotelName,int rating,int price) {
+        Hotel hotel =new Hotel(hotelName,rating,price);
         list.add(hotel);
     }
 
@@ -21,44 +26,60 @@ public class Reservation {
         }
     }
 
-    public boolean getDetails(){
-        String hotel1 = "Lakewood";
-        String hotel2 = "Bridgewood";
-        String hotel3 = "RidgeWood";
+    public void getDetailsForNormal() {
         int LakeWeekday = 110, LakeWeekend = 90;
         int BridWeekday = 150, BridWeekend = 50;
         int RidWeekday = 220, RidWeekend = 150;
-        int ratingOfLake = 3, ratingOfBridge = 4, ratingOfRidge = 5,total = 0;
         System.out.println("Enter the number of Days to reserve");
-        Scanner scanner = new Scanner(System.in);
         int numOfDays = scanner.nextInt();
         System.out.println("Enter 1 for weekday");
         System.out.println("Enter 2 for weekend");
-        int choice = scanner.nextInt();
-        if (choice == 1) {
-            addDetails(hotel1, LakeWeekday, LakeWeekend,ratingOfLake, numOfDays * LakeWeekday);
-            addDetails(hotel2, BridWeekday, BridWeekend, ratingOfBridge,numOfDays * BridWeekday);
-            addDetails(hotel3, RidWeekday, RidWeekend,ratingOfRidge, numOfDays * RidWeekday);
-            showCheapestHotel();
-            showHighestRated();
-        } else if (choice == 2) {
-            addDetails(hotel1, LakeWeekday, LakeWeekend,ratingOfLake, numOfDays * LakeWeekend);
-            addDetails(hotel2, BridWeekday, BridWeekend,ratingOfBridge, numOfDays * BridWeekend);
-            addDetails(hotel3, RidWeekday, RidWeekend,ratingOfLake, numOfDays * RidWeekend);
-            showCheapestHotel();
-            showHighestRated();
+        int dayType = scanner.nextInt();
+        if (dayType == 1) {
+            addDetails(hotel1, ratingOfLake, numOfDays * LakeWeekday);
+            addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekday);
+            addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekday);
+            viewDetails();
+        } else if (dayType == 2) {
+            addDetails(hotel1, ratingOfLake, numOfDays * LakeWeekend);
+            addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekend);
+            addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekend);
+            viewDetails();
         } else {
             System.out.println("Invalid Choice");
-            return false;
         }
-        return true;
+
     }
+    public void getDetailsForReward(){
+        System.out.println("Enter the number of Days to reserve");
+        int numOfDays = scanner.nextInt();
+        int LakeWeekdayForR = 80, LakeWeekendforR = 80;
+        int BridWeekdayForR = 110, BridWeekendForR = 50;
+        int RidWeekdayForR = 100, RidWeekendForR = 40;
+        System.out.println("Enter 1 for weekday");
+        System.out.println("Enter 2 for weekend");
+        int dayType = scanner.nextInt();
+        if (dayType == 1) {
+            addDetails(hotel1, ratingOfLake, numOfDays * LakeWeekdayForR);
+            addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekdayForR);
+            addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekdayForR);
+            viewDetails();
+        } else if (dayType == 2) {
+            addDetails(hotel1, ratingOfLake, numOfDays * LakeWeekendforR);
+            addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekendForR);
+            addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekendForR);
+            viewDetails();
+        } else
+            System.out.println("Invalid Choice");
+
+    }
+
 
     public void showCheapestHotel(){
         System.out.println("Cheapest Hotel: "+getCheapestHotel());
     }
     public void showHighestRated(){
-        System.out.println("Highest Rated: "+getHighestRating());
+        System.out.println("Highest Rated Hotel: "+getHighestRating());
     }
 
     public Optional<Hotel> getCheapestHotel(){
