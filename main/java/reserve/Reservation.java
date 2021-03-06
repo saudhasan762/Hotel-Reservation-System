@@ -40,15 +40,13 @@ public class Reservation {
             addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekday);
             addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekday);
             viewDetails();
-            showCheapestHotel();
-            showHighestRated();
+            showBest();
         } else if (dayType == 2) {
             addDetails(hotel1, ratingOfLake, numOfDays * LakeWeekend);
             addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekend);
             addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekend);
             viewDetails();
-            showCheapestHotel();
-            showHighestRated();
+            showBest();
         } else {
             System.out.println("Invalid Choice");
         }
@@ -68,15 +66,13 @@ public class Reservation {
             addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekdayForR);
             addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekdayForR);
             viewDetails();
-            showCheapestHotel();
-            showHighestRated();
+            showBest();
         } else if (dayType == 2) {
             addDetails(hotel1, ratingOfLake, numOfDays * LakeWeekendforR);
             addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekendForR);
             addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekendForR);
             viewDetails();
-            showCheapestHotel();
-            showHighestRated();
+            showBest();
         } else
             System.out.println("Invalid Choice");
 
@@ -89,6 +85,9 @@ public class Reservation {
     public void showHighestRated(){
         System.out.println("Highest Rated Hotel: "+getHighestRating());
     }
+    public void showBest(){
+        System.out.println(findBest());
+    }
 
     public Optional<Hotel> getCheapestHotel(){
        Optional<Hotel> cheapest = list.stream().min(Comparator.comparing(Hotel::getPriceOfHotel));
@@ -98,5 +97,13 @@ public class Reservation {
     public Optional<Hotel> getHighestRating(){
         Optional<Hotel> highest = list.stream().max(Comparator.comparing(Hotel::getRating));
         return highest;
+    }
+    public Hotel findBest() {
+        Hotel best = list
+                .stream()
+                .max(Comparator.comparing(Hotel::getRating))
+                .orElseThrow(NoSuchFieldError::new);
+        return best;
+
     }
 }
