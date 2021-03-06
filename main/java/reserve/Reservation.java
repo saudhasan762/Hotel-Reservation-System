@@ -40,11 +40,15 @@ public class Reservation {
             addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekday);
             addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekday);
             viewDetails();
+            showCheapestHotel();
+            showHighestRated();
         } else if (dayType == 2) {
             addDetails(hotel1, ratingOfLake, numOfDays * LakeWeekend);
             addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekend);
             addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekend);
             viewDetails();
+            showCheapestHotel();
+            showHighestRated();
         } else {
             System.out.println("Invalid Choice");
         }
@@ -64,11 +68,15 @@ public class Reservation {
             addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekdayForR);
             addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekdayForR);
             viewDetails();
+            showCheapestHotel();
+            showHighestRated();
         } else if (dayType == 2) {
             addDetails(hotel1, ratingOfLake, numOfDays * LakeWeekendforR);
             addDetails(hotel2, ratingOfBridge, numOfDays * BridWeekendForR);
             addDetails(hotel3, ratingOfRidge, numOfDays * RidWeekendForR);
             viewDetails();
+            showCheapestHotel();
+            showHighestRated();
         } else
             System.out.println("Invalid Choice");
 
